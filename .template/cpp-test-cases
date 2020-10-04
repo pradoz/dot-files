@@ -1,0 +1,23 @@
+// #include <iostream>
+
+#include <bits/std++.h>
+using namespace std;
+
+int main() {
+    ios_base::sync_with_stdio(false), cin.tie(nullptr);
+    int T; cin >> T; // get number of test cases
+
+    for (int case_num = 0; case_num <= T; ++case_num) {
+        int N; cin >> N; // iterate up to N for each test case
+
+        // read in a vector of size N
+        vector<int> vec1(N); for (auto& v1 : vec1) cin >> v1;
+
+
+
+        cout << "Case #" << case_num << ": ";
+    }
+
+
+    return 0;
+}
