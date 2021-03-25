@@ -91,7 +91,7 @@ let g:vsnip_snippet_dir='~/.vim/zp-snippets'
 let g:completion_enable_snippets='vim-vsnip'
 
 
-lua require'lspconfig'.pyright.setup{ on_attach=require'completetion'.on_attach }
+lua require'lspconfig'.pyright.setup{ on_attach=require'completion'.on_attach }
 
 " lua << EOF
 "     require'lspconfig'.pyright.setup{}
