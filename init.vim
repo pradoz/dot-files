@@ -33,17 +33,19 @@ set scrolloff=999
 " start plugins
 call plug#begin('~/.vim/plugged')
 
-" Plug 'nvim-lua/popup.nvim'
-" Plug 'nvim-lua/plenary.nvim'
-" Plug 'nvim-telescope/telescope.nvim'
-" Plug 'neovim/nvim-lspconfig'
-" Plug 'nvim-lua/completion-nvim'
-" Plug 'nvim-treesitter/nvim-treesitter', {'do': 'TSUpdate'}
-" Plug 'hrsh7th/vim-vsnip'
-" Plug 'hrsh7th/vim-vsnip-integ'
-" Plug 'mbbill/undotree'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/completion-nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': 'TSUpdate'}
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/vim-vsnip-integ'
+Plug 'mbbill/undotree'
+Plug 'Yggdroot/indentLinmbbill/undotreee'
 
-" Plug 'gruvbox-community/gruvbox'
+
+Plug 'gruvbox-community/gruvbox'
 
 " All of your Plugins must be added before the following line
 
@@ -92,6 +94,8 @@ let g:completion_enable_snippets='vim-vsnip'
 
 
 lua require'lspconfig'.pyright.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.clangd.setup{ on_attach=require'completion'.on_attach }
+" lua require'lspconfig'.pyright.setup{}
 
 " lua << EOF
 "     require'lspconfig'.pyright.setup{}
@@ -102,4 +106,5 @@ nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
 nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+
 
