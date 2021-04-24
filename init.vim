@@ -42,10 +42,9 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': 'TSUpdate'}
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
 Plug 'mbbill/undotree'
-Plug 'Yggdroot/indentLinmbbill/undotreee'
-
-
+Plug 'Yggdroot/indentLine'
 Plug 'gruvbox-community/gruvbox'
+Plug 'rhysd/git-messenger.vim/'
 
 " All of your Plugins must be added before the following line
 
@@ -91,15 +90,11 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 
 let g:vsnip_snippet_dir='~/.vim/zp-snippets'
 let g:completion_enable_snippets='vim-vsnip'
+let g:git_messenger_include_diff='current'
 
 
 lua require'lspconfig'.pyright.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.clangd.setup{ on_attach=require'completion'.on_attach }
-" lua require'lspconfig'.pyright.setup{}
-
-" lua << EOF
-"     require'lspconfig'.pyright.setup{}
-" EOF
 
 " telescope
 nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
@@ -107,4 +102,5 @@ nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 
+imap jj <Esc>
 
