@@ -89,7 +89,7 @@ let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 
 " navigate popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<Tab>"
 
 
 let g:vsnip_snippet_dir='~/.vim/zp-snippets'
