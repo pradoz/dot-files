@@ -12,7 +12,7 @@ set shiftwidth=4
 set expandtab
 
 set smartcase
-set smartindent
+set indentexpr
 set noshowmode
 set completeopt=menuone,noinsert,noselect
 set shortmess+=c
@@ -28,6 +28,7 @@ set updatetime=50
 set colorcolumn=80
 highlight ColorColumn ctermbg=0, guibg=lightgrey
 
+set mouse=a " mouse wheel scrolling
 set scrolloff=999
 
 " remove trailing whitespace on save
@@ -43,12 +44,9 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': 'TSUpdate'}
 Plug 'hrsh7th/nvim-compe'
-" Plug 'hrsh7th/vim-vsnip'
-" Plug 'hrsh7th/vim-vsnip-integ'
-Plug 'mbbill/undotree'
+" Plug 'mbbill/undotree'
 Plug 'gruvbox-community/gruvbox'
-Plug 'rhysd/git-messenger.vim/'
-Plug 'ekalinin/Dockerfile.vim'
+" Plug 'rhysd/git-messenger.vim/'
 
 " All of your Plugins must be added before the following line
 
@@ -73,7 +71,7 @@ let mapleader=" "
 nnoremap <leader>- :vertical resize -5<CR>
 nnoremap <leader>+ :vertical resize +5<CR>
 nnoremap <leader>= <C-W>=<CR>
-nnoremap <leader>u :UndotreeShow<CR>
+" nnoremap <leader>u :UndotreeShow<CR>
 
 nnoremap <leader>o <C-o><CR>
 nnoremap <leader>i <C-i><CR>
@@ -91,17 +89,15 @@ let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<Tab>"
 
+" let g:vsnip_snippet_dir='~/.vim/zp-snippets'
+" let g:completion_enable_snippets='vim-vsnip'
+" let g:git_messenger_include_diff='current'
 
-let g:vsnip_snippet_dir='~/.vim/zp-snippets'
-let g:completion_enable_snippets='vim-vsnip'
-let g:git_messenger_include_diff='current'
 
-
-lua require'lspconfig'.pyright.setup{ on_attach=require'completion'.on_attach }
-" lua require'lspconfig'.terraformls.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.yamlls.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.dockerls.setup{ on_attach=require'completion'.on_attach }
-" lua require'lspconfig'.clangd.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.pyright.setup{ on_attach=require'completion'.on_attach; }
+lua require'lspconfig'.tsserver.setup{ on_attach=require'completion'.on_attach; }
+lua require'lspconfig'.yamlls.setup{ on_attach=require'completion'.on_attach; }
+lua require'lspconfig'.terraformls.setup{ on_attach=require'completion'.on_attach; }
 
 " telescope
 nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
@@ -133,3 +129,4 @@ let g:compe.source.calc = v:true
 let g:compe.source.nvim_lsp = v:true
 let g:compe.source.nvim_lua = v:true
 let g:compe.source.vsnip = v:true
+
