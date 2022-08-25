@@ -19,7 +19,7 @@ set clipboard+=unnamedplus
 
 set noswapfile
 set nobackup
-set undodir=~/.vim/undodir
+" set undodir=~/.vim/undodir
 set undofile
 
 " Nice menu when typing `:find *.py`
@@ -150,6 +150,7 @@ nnoremap <leader>6 <cmd>lua require("harpoon.ui").nav_file(6)<cr>
 nnoremap <leader>7 <cmd>lua require("harpoon.ui").nav_file(7)<cr>
 nnoremap <leader>8 <cmd>lua require("harpoon.ui").nav_file(8)<cr>
 nnoremap <leader>9 <cmd>lua require("harpoon.ui").nav_file(9)<cr>
+nnoremap <leader>0 <cmd>lua require("harpoon.ui").nav_file(10)<cr>
 
 " vim-fugitive
 nnoremap <leader>gs <cmd>G status<cr>
