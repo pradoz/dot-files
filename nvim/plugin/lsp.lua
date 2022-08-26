@@ -49,7 +49,7 @@ cmp.setup({
 
 	sources = {
 		-- tabnine completion? yayaya
-		-- { name = "nvim_lsp" },
+		{ name = "nvim_lsp" },
 
 		-- For luasnip user.
 		{ name = "luasnip" },
