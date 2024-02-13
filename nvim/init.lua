@@ -1,2 +1,2 @@
 require("zpprado")
--- print("hello")
+print("hello")
