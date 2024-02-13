@@ -3,7 +3,8 @@ local lsp = require('lsp-zero')
 lsp.preset('recommended')
 lsp.ensure_installed({
     'pylsp',
-    'tsserver',
+    -- 'tsserver',
+    -- 'gopls',
     'lua_ls',
 })
 
@@ -27,7 +28,7 @@ lsp.setup_nvim_cmp({
 })
 
 lsp.on_attach(function(client, bufnr)
-    local opts = { buffer = bufnr, remap = false}
+    local opts = { buffer = bufnr, remap = false }
     vim.keymap.set('n', '<leader>fh', function() vim.diagnostic.open_float() end, opts)
     vim.keymap.set('n', 'gR', function() vim.lsp.buf.references() end, opts)
     vim.keymap.set('n', 'gr', function() vim.lsp.buf.rename() end, opts)
