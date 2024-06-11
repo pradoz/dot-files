@@ -3,8 +3,8 @@ local lsp = require('lsp-zero')
 lsp.preset('recommended')
 lsp.ensure_installed({
     'pylsp',
-    -- 'tsserver',
-    -- 'gopls',
+    'tsserver',
+    'gopls',
     'lua_ls',
 })
 
@@ -17,6 +17,16 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
     ['<S-Tab>'] = cmp.mapping.select_prev_item(cmp_select),
     ['<C-y>'] = cmp.mapping.confirm({ select = true }),
     ['<C-Space>'] = cmp.mapping.complete(),
+})
+
+cmp.setup({
+    mapping = {
+        ['<CR>'] = cmp.mapping.confirm({ select = false }),
+    },
+    window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
+    }
 })
 
 lsp.set_preferences({
@@ -38,6 +48,8 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set('n', 'gh', function() vim.lsp.buf.hover() end, opts)
     vim.keymap.set('n', 'L', function() vim.lsp.buf.code_action() end, opts)
     vim.keymap.set('i', '<C-h>', function() vim.lsp.buf.signature_help() end, opts)
+    vim.keymap.set('n', '<leader>F', function() vim.lsp.buf.format() end, opts)
 end)
+
 
 lsp.setup()
