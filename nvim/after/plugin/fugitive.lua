@@ -1,13 +1,4 @@
-local cwd = vim.fn.getcwd()
-
-local branch
-if string.find(cwd, "mission_data_lake") then
-    branch = "main"
-elseif string.find(cwd, "goldfish%-hpc") then
-    branch = "main"
-elseif string.find(cwd, "velvet") then
-    branch = "trunk"
-end
+local branch = "main"
 
 vim.keymap.set('n', '<leader>gg', vim.cmd.Git)
 vim.keymap.set('n', '<leader>gc', function() vim.cmd('Git commit') end)

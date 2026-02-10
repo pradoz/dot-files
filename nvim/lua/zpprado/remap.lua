@@ -1,11 +1,13 @@
 vim.g.mapleader = " "
 
-vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
-
 vim.keymap.set('n', '<leader>-', ':vertical resize -5<CR>')
 vim.keymap.set('n', '<leader>+', ':vertical resize +5<CR>')
 vim.keymap.set('n', '<leader>=','<C-W>=<CR>')
 vim.keymap.set('n', '<leader>r', ':resize <bar> vertical resize<CR>')
+
+-- quickfix list navigation
+vim.keymap.set('n', '[q', ':cprev<CR>')
+vim.keymap.set('n', ']q', ':cnext<CR>')
 
 
 vim.keymap.set('n', '<BS>p', ':!python3 %<CR>')

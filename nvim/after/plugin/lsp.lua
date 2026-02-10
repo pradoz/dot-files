@@ -1,55 +1,37 @@
-local lsp = require('lsp-zero')
+-- Enable language servers
+vim.lsp.enable('rust_analyzer')
+vim.lsp.enable('lua_ls')
+-- vim.lsp.enable('basedpyright')
+-- vim.lsp.enable('gopls')
+vim.lsp.enable('clangd')
+-- vim.lsp.enable('ts_ls')
+-- vim.lsp.enable('sneklsp')
 
-lsp.preset('recommended')
-lsp.ensure_installed({
-    'pylsp',
-    'tsserver',
-    'gopls',
-    'lua_ls',
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  -- group = vim.api.nvim_create_augroup('my.lsp', {}),
+  callback = function(args)
+    -- local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+    -- if client:supports_method('textDocument/completion') then
+    --   -- Optional: trigger autocompletion on EVERY keypress. May be slow!
+    --   -- local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
+    --   -- client.server_capabilities.completionProvider.triggerCharacters = chars
+    --   vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
+    -- end
+
+    -- Custom keymaps
+    local opts = { buffer = args.buf }
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+    vim.keymap.set('n', 'gR', vim.lsp.buf.references, opts)
+    vim.keymap.set('n', 'gr', vim.lsp.buf.rename, opts)
+    vim.keymap.set('n', 'gI', vim.lsp.buf.implementation, opts)
+    vim.keymap.set('n', 'gh', vim.lsp.buf.hover, opts)
+    vim.keymap.set('n', 'L', vim.lsp.buf.code_action, opts)
+    vim.keymap.set('n', '<leader>fh', vim.diagnostic.open_float, opts)
+    vim.keymap.set('n', '<leader>F', vim.lsp.buf.format, opts)
+    vim.keymap.set('i', '<C-h>', vim.lsp.buf.signature_help, opts)
+  end,
 })
 
-
-local cmp = require('cmp')
-
-local cmp_select = { behavior = cmp.SelectBehavior.Insert }
-local cmp_mappings = lsp.defaults.cmp_mappings({
-    ['<Tab>'] = cmp.mapping.select_next_item(cmp_select),
-    ['<S-Tab>'] = cmp.mapping.select_prev_item(cmp_select),
-    ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-    ['<C-Space>'] = cmp.mapping.complete(),
-})
-
-cmp.setup({
-    mapping = {
-        ['<CR>'] = cmp.mapping.confirm({ select = false }),
-    },
-    window = {
-        completion = cmp.config.window.bordered(),
-        documentation = cmp.config.window.bordered(),
-    }
-})
-
-lsp.set_preferences({
-    sign_icons = { }
-})
-
-lsp.setup_nvim_cmp({
-    mapping = cmp_mappings
-})
-
-lsp.on_attach(function(client, bufnr)
-    local opts = { buffer = bufnr, remap = false }
-    vim.keymap.set('n', '<leader>fh', function() vim.diagnostic.open_float() end, opts)
-    vim.keymap.set('n', 'gR', function() vim.lsp.buf.references() end, opts)
-    vim.keymap.set('n', 'gr', function() vim.lsp.buf.rename() end, opts)
-    vim.keymap.set('n', 'gI', function() vim.lsp.buf.implementation() end, opts)
-    vim.keymap.set('n', 'gd', function() vim.cmd('execute \"normal g*\"') vim.lsp.buf.definition() end, opts)
-    vim.keymap.set('n', 'gD', function() vim.lsp.buf.declaration() end, opts)
-    vim.keymap.set('n', 'gh', function() vim.lsp.buf.hover() end, opts)
-    vim.keymap.set('n', 'L', function() vim.lsp.buf.code_action() end, opts)
-    vim.keymap.set('i', '<C-h>', function() vim.lsp.buf.signature_help() end, opts)
-    vim.keymap.set('n', '<leader>F', function() vim.lsp.buf.format() end, opts)
-end)
-
-
-lsp.setup()
+vim.cmd [[set completeopt+=menuone,noselect,popup]]
