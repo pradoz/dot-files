@@ -23,7 +23,6 @@ local plugins = {
   { src = gh('mason-org/mason.nvim') },
   { src = gh('L3MON4D3/LuaSnip') },
   { src = gh('saghen/blink.cmp'), version = 'v1.8.0' },
-  { src = gh('saghen/blink.cmp'), version = 'v1.8.0' },
   { src = gh('stevearc/oil.nvim') },
 }
 
